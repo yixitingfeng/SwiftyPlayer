@@ -22,11 +22,6 @@ class JustVideoPlayerViewController: UIViewController {
 
     let url = URL(string: "https://mov.bn.netease.com/open-movie/nos/mp4/2017/12/04/SD3SUEFFQ_hd.mp4")
 
-    struct Handlers {
-        var syncMediaProgression: ((Bool, Double) -> Void)?
-    }
-    var handlers = Handlers()
-
     @IBOutlet private weak var videoPlayerView: VideoPlayerView!
 
     private var playableItem: PlayableItem? {
@@ -81,7 +76,10 @@ class JustVideoPlayerViewController: UIViewController {
             child.player = player
             child.videoPlayerView = videoPlayerView
             child.handlers.didEnterLandscape = { [weak self] isLandscape in
-                self?.updateAppearanceWhenRotation(isLandscape)
+                let isPad = UIDevice.current.userInterfaceIdiom == .pad
+                if !isPad {
+                    self?.updateAppearanceWhenRotation(isLandscape)
+                }
                 UIDevice.current.setOrientation(isLandscape ? .landscapeRight : .portrait)
             }
         }
