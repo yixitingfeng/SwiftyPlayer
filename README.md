@@ -2,6 +2,10 @@
 
 SwiftyPlayer is an audio and video playback component written in Swift, based on [AVPlayer](https://developer.apple.com/documentation/avfoundation/avplayer). SwiftyPlayer only focuses on playback events, and does not provide screen rotation, gesture control, and other functions that are not related to playback events.
 
+## Demo
+
+![SwiftyPlayer](SwiftyPlayer.gif)
+
 ## Features
 
 - [x] Only focus on audio and video playback events
@@ -22,14 +26,14 @@ SwiftyPlayer is an audio and video playback component written in Swift, based on
 
 ## TODO
 
-- [ ] Add Example project
+- [x] Add Example project
 
 ## Wiki
 
-You can view information about how to install and how to use through the [wiki](https://github.com/shiwei93/SwiftyPlayer/wiki).
+You can view information about how to install and how to use through the [wiki](https://github.com/shanbay/SwiftyPlayer/wiki).
 
- * [Installation Guide](https://github.com/shiwei93/SwiftyPlayer/wiki/Installation-Guide) - Install SwiftyPlayer into your project.
- * [Cheat Sheet](https://github.com/shiwei93/SwiftyPlayer/wiki/Cheat-Sheet) - See this page for useful code snippets
+ * [Installation Guide](https://github.com/shanbay/SwiftyPlayer/wiki/Installation-Guide) - Install SwiftyPlayer into your project.
+ * [Cheat Sheet](https://github.com/shanbay/SwiftyPlayer/wiki/Cheat-Sheet) - See this page for useful code snippets
 
 ## License
 
