@@ -77,4 +77,38 @@ public class VideoPlayer: Player {
         }
     }
 
+    /// 截取播放器指定时间点的画面帧
+    ///
+    /// - Parameters:
+    ///   - time: 指定截取的时间点，默认截取调用方法的时间点
+    ///   - completion: 截取的 UIImage 对象
+    public func takeScreenshot(at time: TimeInterval? = nil, completion: @escaping (UIImage?) -> Void) {
+        guard let player = player,
+              let asset = avPlayerItem?.asset
+        else {
+            completion(nil)
+            return
+        }
+        DispatchQueue.global(qos: .background).async {
+            let assetIg = AVAssetImageGenerator(asset: asset)
+            assetIg.appliesPreferredTrackTransform = true
+            assetIg.apertureMode = .encodedPixels
+            let cmTime: CMTime
+            if let time = time {
+                cmTime = CMTime(timeInterval: time)
+            } else {
+                cmTime = player.currentTime()
+            }
+            let thumbnail: CGImage
+            do {
+                thumbnail = try assetIg.copyCGImage(at: cmTime, actualTime: nil)
+            } catch {
+                return completion(nil)
+            }
+            DispatchQueue.main.async {
+                completion(UIImage(cgImage: thumbnail))
+            }
+        }
+    }
+
 }

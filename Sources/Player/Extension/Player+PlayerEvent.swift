@@ -17,12 +17,7 @@ extension Player {
     func handlePlayerEvent(from producer: EventProducer, with event: PlayerEventProducer.PlayerEvent) {
         switch event {
         case .endedPlaying(error: let error):
-            if let error = error {
-                state = .failed(.foundationError(error))
-            } else if let currentItem = currentItem {
-                delegate?.player(self, didEndedPlaying: currentItem)
-                endedPlayingItem()
-            }
+            endedPlaying(error)
         case .interruptionBegan(let wasSuspended) where !wasSuspended:
             pausedForInterruption = true
             if state.isPlaying || state.isBuffering {
@@ -112,12 +107,15 @@ extension Player {
         }
     }
 
-    private func endedPlayingItem() {
-        if case .advance = actionAtItemEnd {
-            nextOrStop()
-        } else {
-            pause()
-            if case .pause = actionAtItemEnd {
+    private func endedPlaying(_ error: Error?) {
+        if let error = error {
+            state = .failed(.foundationError(error))
+        } else if let currentItem = currentItem {
+            delegate?.player(self, didEndedPlaying: currentItem)
+            if case .advance = actionAtItemEnd {
+                nextOrStop()
+            } else if case .pause = actionAtItemEnd {
+                pause()
                 seek(to: 0)
             }
         }
