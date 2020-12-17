@@ -112,7 +112,7 @@ extension Player {
             state = .failed(.foundationError(error))
         } else if let currentItem = currentItem {
             delegate?.player(self, didEndedPlaying: currentItem)
-            if case .advance = actionAtItemEnd {
+            if case .next = actionAtItemEnd {
                 nextOrStop()
             } else if case .pause = actionAtItemEnd {
                 pause()

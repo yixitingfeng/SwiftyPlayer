@@ -254,11 +254,7 @@ public class Player: NSObject, EventListener {
     /// 当前 item 播放结束之后操作
     ///
     /// 默认播放队列中的下一个
-    public var actionAtItemEnd: ActionAtItemEnd = .advance {
-        didSet {
-            player?.actionAtItemEnd = AVPlayer.ActionAtItemEnd(rawValue: actionAtItemEnd.rawValue) ?? .none
-        }
-    }
+    public var actionAtItemEnd: ActionAtItemEnd = .next
 
     /// 定义了用户执行 seek 操作的行为
     ///
