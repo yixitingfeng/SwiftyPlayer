@@ -114,7 +114,7 @@ extension Player {
             delegate?.player(self, didEndedPlaying: currentItem)
             if case .next = actionAtItemEnd {
                 nextOrStop()
-            } else if case .pause = actionAtItemEnd {
+            } else { // 播放完毕之后暂停播放
                 pause()
                 seek(to: 0)
             }

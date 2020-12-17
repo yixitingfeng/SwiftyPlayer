@@ -10,7 +10,6 @@ extension Player {
     public enum ActionAtItemEnd: Int {
         case next
         case pause
-        case none
     }
 
     /// 队列中的所有 item
