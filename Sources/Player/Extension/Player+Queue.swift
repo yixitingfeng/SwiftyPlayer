@@ -6,7 +6,6 @@
 //
 
 extension Player {
-
     public enum ActionAtItemEnd: Int {
         case next
         case pause
@@ -79,5 +78,4 @@ extension Player {
     public func removeItem(at index: Int) {
         queue?.remove(at: index)
     }
-
 }
